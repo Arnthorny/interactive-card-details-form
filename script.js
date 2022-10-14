@@ -87,7 +87,9 @@ function errorCheck(e) {
   allErrorMsg.forEach((el) => (el.textContent = ""));
 
   for (const el of allInputFields) {
-    const errorSibl = document.querySelector(`#${el.id}~span`);
+    const errorSibl =
+      document.querySelector(`#${el.id}~span`) ||
+      el.closest("div").querySelector(".error__msg");
     const elText = el.value;
     const stripText = stripSpace(elText);
 
@@ -102,7 +104,7 @@ function errorCheck(e) {
         errorSibl.textContent = "Can't be blank";
         noError = false;
         break;
-      case el.getAttribute("lit") === "number":
+      case el.dataset.lit === "number":
         if (!isFinite(stripText)) {
           errorSibl.textContent = "Wrong format, numbers only";
           noError = false;
@@ -112,7 +114,7 @@ function errorCheck(e) {
         }
         break;
 
-      case el.getAttribute("lit") === "text" && !isAllText:
+      case el.dataset.lit === "text" && !isAllText:
         errorSibl.textContent = "Wrong format, text only";
         noError = false;
         break;
@@ -128,7 +130,10 @@ function errorCheck(e) {
 function restart() {
   allInputFields.forEach((el) => {
     el.value = "";
-    const errorSibl = document.querySelector(`#${el.id}~span`);
+    const errorSibl =
+      document.querySelector(`#${el.id}~span`) ||
+      el.closest("div").querySelector(".error__msg");
+    console.log(errorSibl);
     errorSibl.textContent = "";
     const cardSpan = document.querySelector(`#card__${el.id}`);
     cardSpan.textContent = cardDefText[cardSpan.dataset.pos];

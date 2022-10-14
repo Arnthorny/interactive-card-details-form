@@ -34,7 +34,7 @@ body {
   font-weight: 400;
 }
 
-.main {
+main {
   display: flex;
   height: 100%;
   position: relative;
@@ -187,32 +187,43 @@ input:focus-visible {
   outline: none;
 }
 
-legend {
+.legend {
   display: flex;
+  justify-content: space-between;
 }
 
-legend > label > span:first-of-type {
+.title {
+  font-size: 1.1rem;
+  letter-spacing: 0.1rem;
+  font-weight: 600;
   display: block;
   margin-bottom: 2%;
 }
 
-legend > label {
+.legend label {
   display: inline-block;
   width: 48%;
-  margin: 2% 0;
 }
 
-legend > label > input {
+.legend input {
   display: inline-block;
 }
 
-legend > label:first-of-type {
-  margin-right: 4%;
+#inline {
+  width: 48%;
 }
 
-legend > label:first-of-type > input {
-  width: 46%;
-  margin-right: 2%;
+#inline > label {
+  margin-bottom: 0;
+}
+
+.legend > label:last-of-type {
+  margin: 0% 0 0 0;
+}
+
+#card_cvc {
+  width: 100%;
+  margin: 3% 0 4% 0;
 }
 
 button {
@@ -265,6 +276,7 @@ button:hover {
   letter-spacing: normal;
   display: inline-block;
   font-size: 1rem;
+  font-weight: 600;
   color: var(--error);
   margin: 1.5% 0;
 }
@@ -294,7 +306,7 @@ button:hover {
 }
 
 @media (max-width: 650px) {
-  .main {
+  main {
     flex-flow: column wrap;
     overflow-y: scroll;
     width: 100vw;
